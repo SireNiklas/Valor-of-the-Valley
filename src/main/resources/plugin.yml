@@ -1,0 +1,20 @@
+name: ValorOfTheValley
+version: '0.0-dev'
+main: me.sirniklas.valorofthevalley.ValorOfTheValley
+api-version: '1.21'
+prefix: VOTV
+authors: [ SirNiklas ]
+description: Plugin that runs the event Valor of the Valley in ConSMP
+commands:
+  valorofthevalley:
+    description: "Displays Valor of the Valley plugin information"
+    usage: "/command [version/set] [String]"
+    aliases: [votv, vov]
+    permission: votv.command.admin
+    permission-message: "You do not have permission to use this command"
+  region:
+    description: "Valor of the Valley region commands"
+    usage: "/region"
+    aliases: [ rg ]
+    permission: cowcannon.command.region
+    permission-message: "You do not have permission to use this command"
