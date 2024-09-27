@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class RegionCommand implements CommandExecutor {
+public class RegionCommands implements CommandExecutor {
 
     // Homework: Move into PlayerCache
     private final Map<UUID, Tuple<Location, Location>> selections = new HashMap<>();

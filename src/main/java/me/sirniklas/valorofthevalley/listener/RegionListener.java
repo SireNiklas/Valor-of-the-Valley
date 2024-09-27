@@ -1,5 +1,10 @@
 package me.sirniklas.valorofthevalley.listener;
 
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import com.sk89q.worldguard.protection.regions.RegionContainer;
 import me.sirniklas.valorofthevalley.Region;
 import me.sirniklas.valorofthevalley.Regions;
 import me.sirniklas.valorofthevalley.ValorOfTheValley;
@@ -13,6 +18,8 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.Random;
 
 public class RegionListener implements Listener {
 
@@ -28,7 +35,18 @@ public class RegionListener implements Listener {
 
         Inventory inventory = player.getInventory();
 
-        if (standingIn != null) {
+        RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer(); //Accessing all the region managers
+        RegionManager wgRegions = container.get(BukkitAdapter.adapt(player.getWorld())); //Get the region manager which holds all the regions for the world the player is in
+        if (wgRegions == null) { //Null check to ensure there are reigons in the world
+            return;
+        }
+
+        ProtectedRegion wgPRegion  = wgRegions.getRegion("ValorArena"); //Get the region with the name "Mine"
+        if (wgPRegion == null) {  //Null check incase there is no region with the name Mine
+            return;
+        }
+
+        if (wgPRegion.contains(player.getLocation().getBlockX(), player.getLocation().getBlockY(), player.getLocation().getBlockZ())) { //Check if the region contains the players location
             // COAL ORE
             if (Material.COAL_ORE == block.getType()) {
                 inventory.addItem(new ItemStack(Material.COAL));
@@ -154,6 +172,49 @@ public class RegionListener implements Listener {
                     }
                 }.runTaskLater(ValorOfTheValley.getInstance(), 20 * 120);
             }
+            // Melons
+            else if (Material.MELON == block.getType()) {
+                Random random = new Random();
+                int randomItemCount = random.nextInt((5 - 1) + 1) + 1;
+                for (int i = 0; i < randomItemCount; i++) {
+                    inventory.addItem(new ItemStack(Material.MELON_SLICE));
+                }
+                event.setCancelled(true);
+                block.setType(Material.MANGROVE_ROOTS);
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        block.setType(Material.MELON);
+                    }
+                }.runTaskLater(ValorOfTheValley.getInstance(), 20 * 15);
+            }
+//            // AMETHYST
+//            else if (Material.AMETHYST_BLOCK == block.getType()) {
+//                inventory.addItem(new ItemStack(Material.AMETHYST_SHARD));
+//                event.setCancelled(true);
+//                block.setType(Material.SMOOTH_BASALT);
+//
+//                new BukkitRunnable() {
+//                    @Override
+//                    public void run() {
+//                        block.setType(Material.AMETHYST_BLOCK);
+//                    }
+//                }.runTaskLater(ValorOfTheValley.getInstance(), 20 * 120);
+//            }
+            // Melons
+            else if (Material.OAK_WOOD == block.getType()) {
+                for (int i = 0; i <= 4; i++) {
+                    inventory.addItem(new ItemStack(Material.OAK_PLANKS));
+                }
+                event.setCancelled(true);
+                block.setType(Material.STRIPPED_OAK_WOOD);
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        block.setType(Material.OAK_WOOD);
+                    }
+                }.runTaskLater(ValorOfTheValley.getInstance(), 20 * 15);
+            }
 
             if (player.hasPermission("votv.regions.build")) {
                 event.setCancelled(false);
@@ -172,6 +233,7 @@ public class RegionListener implements Listener {
         if (player.hasPermission("votv.regions.build")) {
             event.setCancelled(false);
         } else {
+            player.sendMessage(regions.findRegion(event.getBlock().getLocation()).toString());
             event.setCancelled(true);
         }
     }

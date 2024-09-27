@@ -5,16 +5,18 @@ api-version: '1.21'
 prefix: VOTV
 authors: [ SirNiklas ]
 description: Plugin that runs the event Valor of the Valley in ConSMP
+softdepend:
+  - WorldGuard
 commands:
   valorofthevalley:
     description: "Displays Valor of the Valley plugin information"
-    usage: "/command [version/set] [String]"
+    usage: "/command"
     aliases: [votv, vov]
     permission: votv.command.admin
     permission-message: "You do not have permission to use this command"
-  region:
-    description: "Valor of the Valley region commands"
-    usage: "/region"
-    aliases: [ rg ]
-    permission: cowcannon.command.region
-    permission-message: "You do not have permission to use this command"
+#  region:
+#    description: "Valor of the Valley region commands"
+#    usage: "/region"
+#    aliases: [ rg ]
+#    permission: votv.command.region
+#    permission-message: "You do not have permission to use this command"
