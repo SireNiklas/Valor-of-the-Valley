@@ -1,7 +1,5 @@
-package me.sirniklas.valorofthevalley.commands;
+package me.sirniklas.valorofthevalley.SirLib;
 
-import me.sirniklas.valorofthevalley.Region;
-import me.sirniklas.valorofthevalley.Regions;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;

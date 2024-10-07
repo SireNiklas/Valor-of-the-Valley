@@ -1,4 +1,4 @@
-package me.sirniklas.valorofthevalley;
+package me.sirniklas.valorofthevalley.SirLib;
 
 import org.bukkit.Location;
 

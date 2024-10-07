@@ -5,13 +5,37 @@ api-version: '1.21'
 prefix: VOTV
 authors: [ SirNiklas ]
 description: Plugin that runs the event Valor of the Valley in ConSMP
-softdepend:
-  - WorldGuard
+depend: [WorldGuard]
+softdepend: [PlaceholderAPI]
 commands:
   valorofthevalley:
     description: "Displays Valor of the Valley plugin information"
     usage: "/command"
     aliases: [votv, vov]
+    permission: votv.command.admin
+    permission-message: "You do not have permission to use this command"
+  valorofthevalleyeconomy:
+    description: "Displays Valor of the Valley plugin information"
+    usage: "/command"
+    aliases: [votveco, voveco, votve, vove, valorofthevalleyeco, valorofthevalleye]
+    permission: votv.command.economy.admin
+    permission-message: "You do not have permission to use this command"
+  valorofthevalleyeconomyset:
+    description: "Displays Valor of the Valley plugin information"
+    usage: "/command"
+    aliases: [votveco, voveco, votve, vove, valorofthevalleyeco, valorofthevalleye]
+    permission: votv.command.economy.admin
+    permission-message: "You do not have permission to use this command"
+  medals:
+    description: "Displays Valor of the Valley points"
+    usage: "/command"
+    aliases: [m, md]
+    permission: votv.command.admin
+    permission-message: "You do not have permission to use this command"
+  setmedals:
+    description: "Displays Valor of the Valley get points"
+    usage: "/command"
+    aliases: [getm, getmd]
     permission: votv.command.admin
     permission-message: "You do not have permission to use this command"
 #  region:
@@ -20,3 +44,8 @@ commands:
 #    aliases: [ rg ]
 #    permission: votv.command.region
 #    permission-message: "You do not have permission to use this command"
+
+permissions:
+  votv.regions.build:
+    description: Allow building in the VOTV arena
+    default: op

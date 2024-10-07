@@ -1,4 +1,4 @@
-package me.sirniklas.valorofthevalley.Utility;
+package me.sirniklas.valorofthevalley.Data;
 
 import me.sirniklas.valorofthevalley.ValorOfTheValley;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,8 +12,6 @@ public class VOTVConfig {
 
     private File file;
     private YamlConfiguration config;
-
-    private String votvPrefix;
 
     private VOTVConfig() {}
 
@@ -32,8 +30,6 @@ public class VOTVConfig {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        votvPrefix = config.getString("Utility.VOTV_Chat_Prefix");
     }
 
     public void save() {
@@ -50,14 +46,8 @@ public class VOTVConfig {
         save();
     }
 
-    public String getVotvPrefix() {
-        return votvPrefix;
-    }
-
-    public void setVotvPrefix(String votvPrefix) {
-        this.votvPrefix = votvPrefix;
-
-        set("Utility.VOTV_Chat_Prefix", votvPrefix);
+    public static YamlConfiguration getConfig() {
+        return instance.config;
     }
 
     public static VOTVConfig getInstance() {

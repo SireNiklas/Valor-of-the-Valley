@@ -1,5 +1,6 @@
-package me.sirniklas.valorofthevalley;
+package me.sirniklas.valorofthevalley.SirLib;
 
+import me.sirniklas.valorofthevalley.ValorOfTheValley;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 

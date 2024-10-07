@@ -1,4 +1,37 @@
-Utility:
-
+# Utility Functionality
+UTILITY:
   # Prefix for Valor of the Valley
-  VOTV_Chat_Prefix: "&fValor of the Valley"
+  ChatPrefix: "&aVotV"
+
+  # Regions controlled by the plugin
+  WorldGuard-Region-ArenaName: "VOTVArena"
+  WorldGuard-Region-ExtractionName: "VOTVExtraction"
+
+# Commands ran by certain events
+  # What happens to the player when they either extract or leave the game
+  EXTRACTION:
+    # Time in seconds it takes to extract from the game.
+    Extraction-Time: 20
+
+    # When the player extracts from the game using the exit what world and location will they be teleported to?
+    Extract-World: "spawn"
+    Player-Teleport-Coordinates:
+      # TODO ADD A COMMAND!
+      X: -35.5 # Floats allowed, just F3 the coordinates in minecraft.
+      Y: 65
+      Z: 2.50
+
+# Blocks defined to regenerate when mined.
+REGENERABLE-BLOCKS:
+  COAL_BLOCK:
+    Mineable-Block: COAL_ORE
+    Inventory-Item: COAL
+    Replacement-Block: COBBLESTONE
+    Time-Till-Respawn: 30
+  COPPER_BLOCK:
+    Mineable-Block: COPPER_ORE
+    Inventory-Item: COPPER_INGOT
+    Replacement-Block: COBBLESTONE
+    Item-Amount: 3
+    Block-Experience: 5
+    Time-Till-Respawn: 30
