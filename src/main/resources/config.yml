@@ -35,3 +35,13 @@ REGENERABLE-BLOCKS:
     Item-Amount: 3
     Block-Experience: 5
     Time-Till-Respawn: 30
+
+Shop-Items:
+  StreamKey:
+    Item-Display: OMINOUS_TRIAL_KEY
+    Item-Price: 50
+    Item-Index: 11
+#    Item-Command: ei give %cp-player-name% StreamKey
+  VoteKey:
+
+  BetaKey:

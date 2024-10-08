@@ -42,6 +42,25 @@ public class VOTVConfigLoader {
         public int getTimeTillRespawn() { return timeTillRespawn; }
     }
 
+    public class ShopItems {
+        private final Material itemDisplay;
+        private final int itemPrice;
+        private final int itemIndex;
+        private final String itemCommand;
+
+        public ShopItems(Material itemDisplay, int itemPrice, int itemIndex, String itemCommand) {
+            this.itemDisplay = itemDisplay;
+            this.itemPrice = itemPrice;
+            this.itemIndex = itemIndex;
+            this.itemCommand = itemCommand;
+        }
+
+        public Material getItemDisplay() { return itemDisplay; }
+        public int getItemPrice() { return itemPrice; }
+        public int getItemIndex() { return itemIndex; }
+        public String getItemCommand() { return itemCommand; }
+    }
+
     void VOTVConfigLoader() {
 
     }
@@ -64,17 +83,6 @@ public class VOTVConfigLoader {
     public Location ExtractionLocation;
 
     YamlConfiguration config = VOTVConfig.getConfig();
-    ConfigurationSection sec = config.getConfigurationSection("Regenerable-Blocks");
-
-    public void loadConfiguration() {
-        //getUtilityConfiguration();
-        getRegenerableBlocks();
-    }
-
-    // General Utility
-    public void getUtilityConfiguration() {
-
-    }
 
     // Regenerating Blocks
     String blockType = "";
@@ -85,7 +93,14 @@ public class VOTVConfigLoader {
     int blockExperience = 0;
     int timeTillRespawn = 0;
 
+    String itemDisplay = "";
+    int itemPrice = 0;
+    int itemIndex = 0;
+    String itemCommand = "";
+
+
     public void getRegenerableBlocks() {
+        ConfigurationSection sec = config.getConfigurationSection("Regenerable-Blocks");
         for (String key : sec.getKeys(false)) {
             blockType = config.getString("Regenerable-Blocks." + key + ".Mineable-Block");
             RegenerableItemsList.add(Material.valueOf(blockType));
@@ -100,6 +115,19 @@ public class VOTVConfigLoader {
             RegenerableItems RegenBlock = new RegenerableItems(Material.getMaterial(blockType), Material.getMaterial(mineableBlock), Material.getMaterial(inventoryItem), Material.getMaterial(replacmentBlock), itemAmount, blockExperience, timeTillRespawn);
             MinableBlocks.put(Material.valueOf(blockType), RegenBlock);
         }
+
+//        sec = config.getConfigurationSection("Shop-Items");
+//        for (String key : sec.getKeys(false)) {
+//            itemDisplay = config.getString("Shop-Items." + key + ".Item-Displays");
+//            RegenerableItemsList.add(Material.valueOf(blockType));
+//
+//            itemPrice = config.getInt("Shop-Items." + key + ".Item-Price");
+//            itemIndex = config.getInt("Shop-Items." + key + ".Item-Index");
+//            itemCommand = config.getString("Shop-Items." + key + ".Item-Command");
+//
+//            RegenerableItems RegenBlock = new RegenerableItems(Material.getMaterial(blockType), Material.getMaterial(mineableBlock), Material.getMaterial(inventoryItem), Material.getMaterial(replacmentBlock), itemAmount, blockExperience, timeTillRespawn);
+//            MinableBlocks.put(Material.valueOf(blockType), RegenBlock);
+//        }
 
         ChatPrefix = config.getString("Utility.ChatPrefix");
 

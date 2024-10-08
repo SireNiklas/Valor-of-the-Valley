@@ -7,6 +7,7 @@ import me.sirniklas.valorofthevalley.Data.Listeners.PlayerJoinListener;
 import me.sirniklas.valorofthevalley.Data.VOTVConfig;
 import me.sirniklas.valorofthevalley.Data.VOTVConfigLoader;
 import me.sirniklas.valorofthevalley.Data.VotVDatabase;
+import me.sirniklas.valorofthevalley.Economy.Listeners.GUIListener;
 import me.sirniklas.valorofthevalley.Economy.VOTVEconomy;
 import me.sirniklas.valorofthevalley.Game.Listeners.ExtractionListener;
 import me.sirniklas.valorofthevalley.Game.Listeners.PlayerKillListener;
@@ -40,6 +41,7 @@ public final class ValorOfTheValley extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ExtractionListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerKillListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new GUIListener(VOTVEconomy), this);
 
         // Command Registry
         getCommand("valorofthevalley").setExecutor(new VOTVCommands(this, VOTVEconomy));
