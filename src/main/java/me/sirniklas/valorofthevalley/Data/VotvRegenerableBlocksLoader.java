@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class VOTVConfigLoader {
+public class VotvRegenerableBlocksLoader {
 
-    private final static VOTVConfigLoader instance = new VOTVConfigLoader();
+    private final static VotvRegenerableBlocksLoader instance = new VotvRegenerableBlocksLoader();
 
     public class RegenerableItems {
         private final Material blockType;
@@ -42,47 +42,10 @@ public class VOTVConfigLoader {
         public int getTimeTillRespawn() { return timeTillRespawn; }
     }
 
-    public class ShopItems {
-        private final Material itemDisplay;
-        private final int itemPrice;
-        private final int itemIndex;
-        private final String itemCommand;
-
-        public ShopItems(Material itemDisplay, int itemPrice, int itemIndex, String itemCommand) {
-            this.itemDisplay = itemDisplay;
-            this.itemPrice = itemPrice;
-            this.itemIndex = itemIndex;
-            this.itemCommand = itemCommand;
-        }
-
-        public Material getItemDisplay() { return itemDisplay; }
-        public int getItemPrice() { return itemPrice; }
-        public int getItemIndex() { return itemIndex; }
-        public String getItemCommand() { return itemCommand; }
-    }
-
-    void VOTVConfigLoader() {
-
-    }
-
     public HashMap<Material, RegenerableItems> MinableBlocks = new HashMap<>();
     public List<Material> RegenerableItemsList = new ArrayList<Material>();
 
-    // VOTV - CHAT
-    public String ChatPrefix;
-
-    // VOTV - REGION
-    public String WorldGuardRegionName;
-    public String ExtractionRegionName;
-
-    // VOTV - EXIT
-    public int ExtractionTime;
-    public String ExtractionWorld;
-    public Vector3d ExtractionCoordinates;
-
-    public Location ExtractionLocation;
-
-    YamlConfiguration config = VOTVConfig.getConfig();
+    YamlConfiguration config = VotvConfig.getConfig();
 
     // Regenerating Blocks
     String blockType = "";
@@ -92,12 +55,6 @@ public class VOTVConfigLoader {
     int itemAmount = 0;
     int blockExperience = 0;
     int timeTillRespawn = 0;
-
-    String itemDisplay = "";
-    int itemPrice = 0;
-    int itemIndex = 0;
-    String itemCommand = "";
-
 
     public void getRegenerableBlocks() {
         ConfigurationSection sec = config.getConfigurationSection("Regenerable-Blocks");
@@ -115,40 +72,13 @@ public class VOTVConfigLoader {
             RegenerableItems RegenBlock = new RegenerableItems(Material.getMaterial(blockType), Material.getMaterial(mineableBlock), Material.getMaterial(inventoryItem), Material.getMaterial(replacmentBlock), itemAmount, blockExperience, timeTillRespawn);
             MinableBlocks.put(Material.valueOf(blockType), RegenBlock);
         }
-
-//        sec = config.getConfigurationSection("Shop-Items");
-//        for (String key : sec.getKeys(false)) {
-//            itemDisplay = config.getString("Shop-Items." + key + ".Item-Displays");
-//            RegenerableItemsList.add(Material.valueOf(blockType));
-//
-//            itemPrice = config.getInt("Shop-Items." + key + ".Item-Price");
-//            itemIndex = config.getInt("Shop-Items." + key + ".Item-Index");
-//            itemCommand = config.getString("Shop-Items." + key + ".Item-Command");
-//
-//            RegenerableItems RegenBlock = new RegenerableItems(Material.getMaterial(blockType), Material.getMaterial(mineableBlock), Material.getMaterial(inventoryItem), Material.getMaterial(replacmentBlock), itemAmount, blockExperience, timeTillRespawn);
-//            MinableBlocks.put(Material.valueOf(blockType), RegenBlock);
-//        }
-
-        ChatPrefix = config.getString("Utility.ChatPrefix");
-
-        WorldGuardRegionName = config.getString("Utility.WorldGuard-Region-ArenaName");
-        ExtractionRegionName = config.getString("Utility.WorldGuard-Region-ExtractionName");
-
-        ExtractionTime = config.getInt("Utility.Extraction.ExtractionTime");
-        ExtractionWorld = config.getString("Utility.Extraction.Extract-World");
-
-//        ExtractionCoordinates.x = config.getInt("Utility.Extraction.Player-Teleport-Coordinates.X");
-//        ExtractionCoordinates.y = config.getInt("Utility.Extraction.Player-Teleport-Coordinates.Y");
-//        ExtractionCoordinates.z = config.getInt("Utility.Extraction.Player-Teleport-Coordinates.Z");
-
-        //ExtractionLocation = new Location(Bukkit.getServer().getWorld(ExtractionWorld), ExtractionCoordinates.x, ExtractionCoordinates.y, ExtractionCoordinates.z);
     }
 
-    public VOTVConfigLoader getVOTVConfigLoader() {
-        return VOTVConfigLoader.instance;
+    public VotvRegenerableBlocksLoader getRegenerableBlocksLoader() {
+        return VotvRegenerableBlocksLoader.instance;
     }
 
-    public static VOTVConfigLoader getInstance() {
+    public static VotvRegenerableBlocksLoader getInstance() {
         return instance;
     }
 

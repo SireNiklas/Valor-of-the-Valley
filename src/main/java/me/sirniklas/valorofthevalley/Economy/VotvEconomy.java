@@ -1,25 +1,20 @@
 package me.sirniklas.valorofthevalley.Economy;
 
 import me.sirniklas.valorofthevalley.ValorOfTheValley;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.sql.SQLException;
 
-public class VOTVEconomy {
+public class VotvEconomy {
 
-    public final ValorOfTheValley valorOfTheValley;
-
-    public VOTVEconomy(ValorOfTheValley valorOfTheValley) {
-        this.valorOfTheValley = valorOfTheValley;
-    }
+    public static VotvEconomy instance;
 
     public void setPlayerMedals(Player target, int value) {
         // Get Amount
         int setValue = value;
 
         try {
-            valorOfTheValley.getVotVDatabase().updatePlayerData(target, "medals", setValue);
+            ValorOfTheValley.getInstance().getVotVDatabase().updatePlayerData(target, "medals", setValue);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -28,7 +23,7 @@ public class VOTVEconomy {
     public int getPlayerMedals(Player target) {
         int medals;
         try {
-            medals = valorOfTheValley.getVotVDatabase().getPlayerData(target, "medals");
+            medals = ValorOfTheValley.getInstance().getVotVDatabase().getPlayerData(target, "medals");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -60,4 +55,7 @@ public class VOTVEconomy {
         return amount <= medalsToCheck;
     }
 
+    public static VotvEconomy getInstance() {
+        return instance;
+    }
 }

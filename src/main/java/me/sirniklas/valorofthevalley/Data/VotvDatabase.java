@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 
 import java.sql.*;
 
-public class VotVDatabase {
+public class VotvDatabase {
 
     private final Connection connection;
 
@@ -16,7 +16,7 @@ public class VotVDatabase {
         void dataValue();
     }
 
-    public VotVDatabase(String path) throws SQLException {
+    public VotvDatabase(String path) throws SQLException {
         connection = DriverManager.getConnection("jdbc:sqlite:" + path);
 
         try (Statement statement = connection.createStatement()) {

@@ -1,4 +1,4 @@
-package me.sirniklas.valorofthevalley.PlayerUtilities;
+package me.sirniklas.valorofthevalley.BananaLibrary.PlayerUtilities;
 
 import org.bukkit.entity.Player;
 

@@ -1,15 +1,28 @@
 # Utility Functionality
-UTILITY:
-  # Prefix for Valor of the Valley
-  ChatPrefix: "&aVotV"
+Utility:
+  # Prefix for Valor of the Valley, all use MiniMessage | https://webui.advntr.dev/
+  VOTV-Chat-Prefix: "<b><dark_red>VO</dark_red><red>TV</red></b>"
+  Manager-Chat-Prefix: "<b><gold>MANAGER</gold></b>"
+
+  # Economy Chat Messages | %medals% will replace for the value
+  Economy-Chat-Prefix: "<b><yellow>ECONOMY</yellow></b>"
+
+  Economy-Chat-Balance-Self-Message: "\n<aqua><hover:show_text:'Medals are a secondary currency, you can purchase items from the VotV Shop'><u>Medals</u></hover></aqua><dark_gray>:</dark_gray> <yellow>%medals%<yellow>\n"
+  Economy-Chat-Balance-Other-Message: "\n<aqua>%player% <hover:show_text:'Medals are a secondary currency, you can purchase items from the VotV Shop'><u>Medals</u></hover></aqua><dark_gray>:</dark_gray> <yellow>%medals%<yellow>\n"
+
+  Debug-Chat-Prefix: "<yellow>DEBUG</yellow><dark_gray>:</dark_gray>"
+  Error-Chat-Prefix: "<red>ERROR</red><dark_gray>:</dark_gray></b>"
+
+  Newline: "\n"
 
   # Regions controlled by the plugin
   WorldGuard-Region-ArenaName: "VOTVArena"
+  WorldGuard-Region-SpawnName: "VOTVSpawn"
   WorldGuard-Region-ExtractionName: "VOTVExtraction"
 
-# Commands ran by certain events
+  # Commands ran by certain events
   # What happens to the player when they either extract or leave the game
-  EXTRACTION:
+  VOTV-EXIT:
     # Time in seconds it takes to extract from the game.
     Extraction-Time: 20
 
@@ -17,31 +30,428 @@ UTILITY:
     Extract-World: "spawn"
     Player-Teleport-Coordinates:
       # TODO ADD A COMMAND!
-      X: -35.5 # Floats allowed, just F3 the coordinates in minecraft.
+      X: 35.5
       Y: 65
       Z: 2.50
 
-# Blocks defined to regenerate when mined.
-REGENERABLE-BLOCKS:
-  COAL_BLOCK:
+Regenerable-Blocks:
+  COAL:
     Mineable-Block: COAL_ORE
     Inventory-Item: COAL
     Replacement-Block: COBBLESTONE
+    Block-Experience: 2
     Time-Till-Respawn: 30
-  COPPER_BLOCK:
+  COPPER:
     Mineable-Block: COPPER_ORE
     Inventory-Item: COPPER_INGOT
     Replacement-Block: COBBLESTONE
-    Item-Amount: 3
+    Block-Experience: 2
+    Time-Till-Respawn: 45
+  IRON:
+    Mineable-Block: IRON_ORE
+    Inventory-Item: IRON_INGOT
+    Replacement-Block: COBBLESTONE
+    Block-Experience: 3
+    Time-Till-Respawn: 60
+  GOLD:
+    Mineable-Block: GOLD_ORE
+    Inventory-Item: GOLD_INGOT
+    Replacement-Block: COBBLESTONE
+    Block-Experience: 4
+    Time-Till-Respawn: 75
+  LAPIZ:
+    Mineable-Block: LAPIS_ORE
+    Inventory-Item: LAPIS_LAZULI
+    Replacement-Block: COBBLESTONE
+    Block-Experience: 3
+    Time-Till-Respawn: 75
+  REDSTONE:
+    Mineable-Block: REDSTONE_ORE
+    Inventory-Item: REDSTONE
+    Replacement-Block: COBBLESTONE
     Block-Experience: 5
+    Time-Till-Respawn: 75
+  DIAMOND:
+    Mineable-Block: DIAMOND_ORE
+    Inventory-Item: DIAMOND
+    Replacement-Block: COBBLESTONE
+    Block-Experience: 7
+    Time-Till-Respawn: 120
+  EMERALD:
+    Mineable-Block: EMERALD_ORE
+    Inventory-Item: EMERALD
+    Replacement-Block: COBBLESTONE
+    Block-Experience: 7
+    Time-Till-Respawn: 120
+  AMETHYST:
+    Mineable-Block: AMETHYST_BLOCK
+    Inventory-Item: AMETHYST_SHARD
+    Replacement-Block: SMOOTH_BASALT
+    Block-Experience: 6
+    Time-Till-Respawn: 120
+  QUARTZ:
+    Mineable-Block: NETHER_QUARTZ_ORE
+    Inventory-Item: QUARTZ
+    Replacement-Block: NETHERRACK
+    Block-Experience: 5
+    Time-Till-Respawn: 240
+  ANCIENT_DEBRIS:
+    Mineable-Block: ANCIENT_DEBRIS
+    Inventory-Item: NETHERITE_SCRAP
+    Replacement-Block: MAGMA_BLOCK
+    Block-Experience: 10
+    Time-Till-Respawn: 600
+  MELONS:
+    Mineable-Block: MELON
+    Inventory-Item: MELON_SLICE
+    Replacement-Block: MANGROVE_ROOTS
+    Block-Experience: 3
+    Time-Till-Respawn: 15
+  PUMPKIN:
+    Mineable-Block: PUMPKIN
+    Inventory-Item: PUMPKIN_PIE
+    Replacement-Block: MANGROVE_ROOTS
+    Block-Experience: 3
+    Time-Till-Respawn: 15
+  HEYBALE:
+    Mineable-Block: HAY_BLOCK
+    Inventory-Item: WHEAT
+    Replacement-Block: MANGROVE_ROOTS
+    Block-Experience: 3
+    Time-Till-Respawn: 15
+  APPLES:
+    Mineable-Block: RED_CONCRETE_POWDER
+    Inventory-Item: APPLE
+    Replacement-Block: GRAY_CONCRETE_POWDER
+    Block-Experience: 2
+    Time-Till-Respawn: 15
+  FEATHER:
+    Mineable-Block: WHITE_CONCRETE_POWDER
+    Inventory-Item: FEATHER
+    Replacement-Block: BLACK_CONCRETE_POWDER
+    Block-Experience: 2
+    Time-Till-Respawn: 15
+  FLINT:
+    Mineable-Block: GRAVEL
+    Inventory-Item: FLINT
+    Replacement-Block: STONE
+    Block-Experience: 2
+    Time-Till-Respawn: 15
+  STONE:
+    Mineable-Block: STONE
+    Inventory-Item: COBBLESTONE
+    Replacement-Block: DEAD_BRAIN_CORAL_BLOCK
+    Block-Experience: 2
+    Time-Till-Respawn: 15
+  OAK:
+    Mineable-Block: OAK_LOG
+    Inventory-Item: OAK_PLANKS
+    Replacement-Block: STRIPPED_OAK_LOG
+    Block-Experience: 2
+    Time-Till-Respawn: 15
+  SPRUCE:
+    Mineable-Block: SPRUCE_LOG
+    Inventory-Item: OAK_PLANKS
+    Replacement-Block: STRIPPED_SPRUCE_LOG
+    Block-Experience: 2
+    Time-Till-Respawn: 15
+  WHEAT:
+    Mineable-Block: WHEAT
+    Inventory-Item: WHEAT
+    Replacement-Block: AIR
+    Block-Experience: 1
+    Time-Till-Respawn: 15
+  CARROTS:
+    Mineable-Block: CARROTS
+    Inventory-Item: CARROT
+    Replacement-Block: AIR
+    Block-Experience: 1
+    Time-Till-Respawn: 22
+  POTATO:
+    Mineable-Block: POTATOES
+    Inventory-Item: POTATO
+    Replacement-Block: AIR
+    Block-Experience: 1
+    Time-Till-Respawn: 27
+  BEETROOT:
+    Mineable-Block: BEETROOTS
+    Inventory-Item: BEETROOT
+    Replacement-Block: AIR
+    Block-Experience: 1
+    Time-Till-Respawn: 30
+  STRING:
+    Mineable-Block: WHITE_WOOL
+    Inventory-Item: STRING
+    Replacement-Block: BLACK_WOOL
+    Block-Experience: 2
+    Time-Till-Respawn: 30
+  STRING-WEB:
+    Mineable-Block: COBWEB
+    Inventory-Item: STRING
+    Replacement-Block: AIR
+    Block-Experience: 3
     Time-Till-Respawn: 30
 
 Shop-Items:
+  Filler0:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 0
+  Filler1:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 1
+  Filler2:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 2
+  Filler3:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 3
+  Filler4:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 4
+  Filler5:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 5
+  Filler6:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 6
+  Filler7:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 7
+  Filler8:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 8
+  Filler9:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 9
   StreamKey:
     Item-Display: OMINOUS_TRIAL_KEY
+    Item-Name: "Stream Crate Key"
     Item-Price: 50
-    Item-Index: 11
-#    Item-Command: ei give %cp-player-name% StreamKey
+    Item-Index: 10
+    Item-Command: ei give %player_name% StreamKey
   VoteKey:
-
+    Item-Display: TRIAL_KEY
+    Item-Name: "Vote Crate Key"
+    Item-Price: 10
+    Item-Index: 11
+    Item-Command: ei give %player_name% VoteKey
   BetaKey:
+    Item-Display: OMINOUS_TRIAL_KEY
+    Item-Name: "Beta Crate Key"
+    Item-Price: 50
+    Item-Index: 12
+    Item-Command: ei give %player_name% betakey
+  FLY-VOUCHER:
+    Item-Display: FEATHER
+    Item-Name: "Fly Voucher"
+    Item-Price: 25
+    Item-Index: 13
+    Item-Command: ei give %player_name% 20minflyvoucher
+  CLAIM-BLOCK-VOUCHER:
+    Item-Display: GLOBE_BANNER_PATTERN
+    Item-Name: "Block Voucher"
+    Item-Price: 25
+    Item-Index: 14
+    Item-Command: ei give %player_name% ClaimVoucher
+  MONEY-VOUCHER:
+    Item-Display: GOLD_INGOT
+    Item-Name: "Money Voucher"
+    Item-Price: 5
+    Item-Index: 15
+    Item-Command: ei give %player_name% 500moneyvoucher
+  MINER-GEODE:
+    Item-Display: AMETHYST_SHARD
+    Item-Name: "Miner Geode"
+    Item-Price: 5
+    Item-Index: 16
+    Item-Command: ei give %player_name% minersgeode
+  REPAIR-TOOLS:
+    Item-Display: IRON_BLOCK
+    Item-Name: "Repair Tools (Disabled)"
+    Item-Price: 20
+    Item-Index: 17
+    #Item-Command: ei give %player_name% Repair_Item
+  CAT-NIP:
+    Item-Display: SUGAR
+    Item-Name: "Repair Tools"
+    Item-Price: 5
+    Item-Index: 18
+    Item-Command: ei give %player_name% Catnip
+  STARTER-KIT:
+    Item-Display: BARREL
+    Item-Name: "Starter Kit"
+    Item-Price: 5
+    Item-Index: 19
+    Item-Command: ei give %player_name% StarterKit
+  OLD-MEDAL:
+    Item-Display: SUNFLOWER
+    Item-Name: "Old Medal"
+    Item-Price: 30
+    Item-Index: 20
+    Item-Command: ei give %player_name% OldMedal
+  PUMPKING_HELMET:
+    Item-Display: JACK_O_LANTERN
+    Item-Name: "Pumpking Helmet"
+    Item-Price: 30
+    Item-Index: 21
+    Item-Command: ei give %player_name% PumpkingHelmet
+  APPLE-CAP:
+    Item-Display: LEATHER_HELMET
+    Item-Name: "Apple Cap"
+    Item-Price: 30
+    Item-Index: 22
+    Item-Command: ei give %player_name% AppleHat2
+  FROG-BOOTS:
+    Item-Display: LEATHER_BOOTS
+    Item-Name: "Frog Boots"
+    Item-Price: 30
+    Item-Index: 23
+    Item-Command: ei give %player_name% FrogBoots
+  MOON-CHESTPLATE:
+    Item-Display: LEATHER_CHESTPLATE
+    Item-Name: "Moon Chestplate"
+    Item-Price: 30
+    Item-Index: 24
+    Item-Command: ei give %player_name% MoonChestplate
+  UNSTABLE-WAND:
+    Item-Display: END_ROD
+    Item-Name: "Unstable Wand"
+    Item-Price: 30
+    Item-Index: 25
+    Item-Command: ei give %player_name% UnstableWand
+  NIKOS-SLIME-CHIME:
+    Item-Display: GOAT_HORN
+    Item-Name: "Niko's Slime Chime"
+    Item-Price: 30
+    Item-Index: 26
+    Item-Command: ei give %player_name% SlimeHorn
+  BREEZE-ROD:
+    Item-Display: BREEZE_ROD
+    Item-Name: "Air Staff"
+    Item-Price: 30
+    Item-Index: 27
+    Item-Command: ei give %player_name% AirStaff
+  SUN-SHIELD:
+    Item-Display: SHIELD
+    Item-Name: "Sun Shield"
+    Item-Price: 30
+    Item-Index: 28
+    Item-Command: ei give %player_name% SunShield
+  Filler10:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 29
+  Filler11:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 30
+  Filler12:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 31
+  Filler13:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 32
+  Filler14:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 33
+  Filler15:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 34
+  Filler16:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 35
+  Filler17:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 36
+  Filler18:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 37
+  Filler19:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 38
+  Filler20:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 39
+  Filler21:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 40
+  Filler22:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 41
+  Filler24:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 42
+  Filler25:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 43
+  Filler26:
+    Item-Display: PURPLE_STAINED_GLASS_PANE
+    Item-Name: ""
+    Item-Index: 44
+#   Filler27:
+#     Item-Display: PURPLE_STAINED_GLASS_PANE
+#     Item-Name: ""
+#     Item-Index: 45
+#   Filler28:
+#     Item-Display: PURPLE_STAINED_GLASS_PANE
+#     Item-Name: ""
+#     Item-Index: 46
+#  Filler29:
+#    Item-Display: PURPLE_STAINED_GLASS_PANE
+#    Item-Name: ""
+#    Item-Index: 47
+#  Filler30:
+#    Item-Display: PURPLE_STAINED_GLASS_PANE
+#    Item-Name: ""
+#    Item-Index: 48
+#  Filler31:
+#    Item-Display: PURPLE_STAINED_GLASS_PANE
+#    Item-Name: ""
+#    Item-Index: 49
+#  Filler33:
+#    Item-Display: PURPLE_STAINED_GLASS_PANE
+#    Item-Name: ""
+#    Item-Index: 50
+#  Filler34:
+#    Item-Display: PURPLE_STAINED_GLASS_PANE
+#    Item-Name: ""
+#    Item-Index: 51
+#  Filler35:
+#    Item-Display: PURPLE_STAINED_GLASS_PANE
+#    Item-Name: ""
+#    Item-Index: 52
+#  Filler36:
+#    Item-Display: PURPLE_STAINED_GLASS_PANE
+#    Item-Name: ""
+#    Item-Index: 53
+#  Filler37:
+#    Item-Display: PURPLE_STAINED_GLASS_PANE
+#    Item-Name: ""
+#    Item-Index: 54
+#  Filler38:
+#    Item-Display: PURPLE_STAINED_GLASS_PANE
+#    Item-Name: ""
+#    Item-Index: 55

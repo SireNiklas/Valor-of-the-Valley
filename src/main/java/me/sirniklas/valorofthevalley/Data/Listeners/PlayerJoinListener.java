@@ -38,7 +38,14 @@ public class PlayerJoinListener implements Listener {
                             plugin1.getVotVDatabase().updatePlayerData(player, "combatlogged",0);
                             if (combatloggedValue == 1) {
                                 player.getInventory().clear();
+
+                                player.setExp(0);
+                                player.setLevel(0);
+
                                 player.teleport(new Location(Bukkit.getServer().getWorld("votv"), 0.500, 65.000, 0.500));
+                                if (!ValorOfTheValley.getInstance().playerCounts.contains(player)) {
+                                    ValorOfTheValley.getInstance().playerCounts.add(player);
+                                }
                             }
                         } catch (SQLException e) {
                             throw new RuntimeException(e);

@@ -1,19 +1,20 @@
 package me.sirniklas.valorofthevalley.Data;
 
 import me.sirniklas.valorofthevalley.ValorOfTheValley;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
 
-public class VOTVConfig {
+public class VotvConfig {
 
-    private final static VOTVConfig instance = new VOTVConfig();
+    private final static VotvConfig instance = new VotvConfig();
 
     private File file;
     private YamlConfiguration config;
 
-    private VOTVConfig() {}
+    private VotvConfig() {}
 
     public void load() {
         file = new File(ValorOfTheValley.getInstance().getDataFolder(), "config.yml");
@@ -46,11 +47,19 @@ public class VOTVConfig {
         save();
     }
 
+    public void reloadConfig() {
+        try {
+            getConfig().load(file);
+        } catch (IOException | InvalidConfigurationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static YamlConfiguration getConfig() {
         return instance.config;
     }
 
-    public static VOTVConfig getInstance() {
+    public static VotvConfig getInstance() {
         return instance;
     }
 }

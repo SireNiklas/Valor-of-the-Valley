@@ -1,4 +1,4 @@
-package me.sirniklas.valorofthevalley.SirLib;
+package me.sirniklas.valorofthevalley.BananaLibrary;
 
 import me.sirniklas.valorofthevalley.ValorOfTheValley;
 import org.bukkit.Location;
@@ -67,16 +67,18 @@ public final class Regions {
      */
     public Region findRegion(Location location) {
         for (Region region : regions)
-            if (region.isWithin(location))
-                return region;
+            if (region != null)
+                if (region.isWithin(location))
+                    return region;
 
         return null;
     }
 
     public Region findRegion(String name) {
         for (Region region : regions)
-            if (region.getName().equalsIgnoreCase(name))
-                return region;
+            if (region != null)
+                if (region.getName().equalsIgnoreCase(name))
+                    return region;
 
         return null;
     }

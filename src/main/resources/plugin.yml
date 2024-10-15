@@ -4,48 +4,46 @@ main: me.sirniklas.valorofthevalley.ValorOfTheValley
 api-version: '1.21'
 prefix: VOTV
 authors: [ SirNiklas ]
-description: Plugin that runs the event Valor of the Valley in ConSMP
+description: Plugin that runs the event Valor of the Valley in ConClub SMP
 depend: [WorldGuard]
-softdepend: [PlaceholderAPI]
+softdepend: [PlaceholderAPI, VaultAPI]
 commands:
   valorofthevalley:
     description: "Displays Valor of the Valley plugin information"
     usage: "/command"
     aliases: [votv, vov]
-    permission: votv.command.admin
     permission-message: "You do not have permission to use this command"
-  valorofthevalleyeconomy:
-    description: "Displays Valor of the Valley plugin information"
-    usage: "/command"
-    aliases: [votveco, voveco, votve, vove, valorofthevalleyeco, valorofthevalleye]
-    permission: votv.command.economy.admin
-    permission-message: "You do not have permission to use this command"
-  valorofthevalleyeconomyset:
-    description: "Displays Valor of the Valley plugin information"
-    usage: "/command"
-    aliases: [votveco, voveco, votve, vove, valorofthevalleyeco, valorofthevalleye]
-    permission: votv.command.economy.admin
-    permission-message: "You do not have permission to use this command"
-  medals:
-    description: "Displays Valor of the Valley points"
-    usage: "/command"
-    aliases: [m, md]
-    permission: votv.command.admin
-    permission-message: "You do not have permission to use this command"
-  setmedals:
-    description: "Displays Valor of the Valley get points"
-    usage: "/command"
-    aliases: [getm, getmd]
-    permission: votv.command.admin
-    permission-message: "You do not have permission to use this command"
-#  region:
-#    description: "Valor of the Valley region commands"
-#    usage: "/region"
-#    aliases: [ rg ]
-#    permission: votv.command.region
-#    permission-message: "You do not have permission to use this command"
 
 permissions:
+  # ALL ACCESS
+  votv.*:
+    description: Gives access to ALL commands.
+    default: op
+
+  # Admin permission for all admin commands.
+  # Includes:
+    # Economy: /Set, /Clear, /Give, /Take
+  votv.admin.*:
+    description: Allow administrator access to VOTV.
+    default: op
+
+  # Member permission for all commands.
+  # Economy permission for members /Shop, /balance|/bal, /pay
+  votv.eco.*:
+    description: Allow member access to VOTV economy.
+
+  votv.shop:
+    description: Allow Opening of the shop
+    default: not op
+
+  votv.balance:
+    description: Check users balance
+    default: not op
+
+  votv.join:
+    description: Allow Joining of VOTV
+    default: not op
+
   votv.regions.build:
     description: Allow building in the VOTV arena
     default: op

@@ -5,7 +5,7 @@ import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
-import me.sirniklas.valorofthevalley.Data.VOTVConfigLoader;
+import me.sirniklas.valorofthevalley.Data.VotvConfigLoader;
 import me.sirniklas.valorofthevalley.ValorOfTheValley;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -36,7 +36,7 @@ public class PlayerKillListener implements Listener {
             return;
         }
 
-        ProtectedRegion wgPRegion  = wgRegions.getRegion(VOTVConfigLoader.getInstance().WorldGuardRegionName); //Get the region with the name "Mine"
+        ProtectedRegion wgPRegion  = wgRegions.getRegion(VotvConfigLoader.getInstance().ArenaRegionName); //Get the region with the name "Mine"
         if (wgPRegion == null) {  //Null check incase there is no region with the name Mine
             return;
         }

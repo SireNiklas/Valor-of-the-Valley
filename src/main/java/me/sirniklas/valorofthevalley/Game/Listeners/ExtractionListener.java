@@ -7,8 +7,9 @@ import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import de.netzkronehd.wgregionevents.events.RegionEnteredEvent;
 import de.netzkronehd.wgregionevents.events.RegionLeftEvent;
-import me.sirniklas.valorofthevalley.Data.VOTVConfigLoader;
-import me.sirniklas.valorofthevalley.PlayerUtilities.PlayerExperience;
+import me.sirniklas.valorofthevalley.Data.VotvConfigLoader;
+import me.sirniklas.valorofthevalley.Data.VotvRegenerableBlocksLoader;
+import me.sirniklas.valorofthevalley.BananaLibrary.PlayerUtilities.PlayerExperience;
 import me.sirniklas.valorofthevalley.ValorOfTheValley;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
@@ -78,7 +79,7 @@ public class ExtractionListener implements Listener {
             return;
         }
 
-        ProtectedRegion wgPRegion  = wgRegions.getRegion(VOTVConfigLoader.getInstance().ExtractionRegionName); //Get the region with the name "Mine"
+        ProtectedRegion wgPRegion  = wgRegions.getRegion(VotvConfigLoader.getInstance().ExtractionRegionName); //Get the region with the name "Mine"
         if (wgPRegion == null) {  //Null check incase there is no region with the name Mine
             return;
         }
@@ -100,7 +101,7 @@ public class ExtractionListener implements Listener {
             return;
         }
 
-        ProtectedRegion wgPRegion  = wgRegions.getRegion(VOTVConfigLoader.getInstance().ExtractionRegionName); //Get the region with the name "Mine"
+        ProtectedRegion wgPRegion  = wgRegions.getRegion(VotvConfigLoader.getInstance().ExtractionRegionName); //Get the region with the name "Mine"
         if (wgPRegion == null) {  //Null check in case there is no region with the name.
             return;
         }
